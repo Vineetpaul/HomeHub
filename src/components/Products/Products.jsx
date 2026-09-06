@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import Flat from '../../assets/Flat.webp'
-import Land from '../../assets/Land.avif'
-import House from '../../assets/House.jpg'
-import PentHouse from '../../assets/Pent.avif'
-import AirBnb from '../../assets/Air.avif'
-import Hostel from '../../assets/Hostel.avif'
-import Office from '../../assets/Office.avif'
+import products from '../../Config/Products'
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Products = () => {
 
@@ -14,15 +11,7 @@ const Products = () => {
 
     // creating Products section
 
-    const products = [
-        { id: 1, name: "Flat", image: Flat, desc: "Modern 2 BHK flat at just $69690" },
-        { id: 2, name: "Land", image: Land, desc: "Spacious land plot ready for development" },
-        { id: 3, name: "House", image: House, desc: "Comfortable family house with modern amenities" },
-        { id: 4, name: "Pent House", image: PentHouse, desc: "Luxury penthouse with stunning city views" },
-        { id: 5, name: "Air-bnb", image: AirBnb, desc: "Fully furnished stay for a comfortable getaway" },
-        { id: 6, name: "Hostel", image: Hostel, desc: "Affordable shared accommodation for students" },
-        { id: 7, name: "Office", image: Office, desc: "Professional workspace in a convenient location" },
-    ];
+    
 
     useEffect(() => {
         const updateVisibleProducts = () => {
@@ -55,12 +44,16 @@ const Products = () => {
         return () => clearInterval(productInterval);
     }, [visibleProducts]);
 
+    useEffect(()=>{
+        AOS.init({duration:1000, once:true, easing:'ease-in-out'})
+    },[])
+
 
 
     return (
         <div className="flex flex-col gap-2 p-4 lg:p-16 bg-gray-200 min-h-screen">
             {/*creating Heading section  */}
-            <div className="mt-10 lg:mt-0">
+            <div data-aos="fade-up" className="mt-10 lg:mt-0">
                 <p className="text-red-400 ">// EXPLORE CITIES</p>
                 <h1 className="mt-5 text-4xl font-bold text-gray-800 leading-tight">Take a stroll around surroundings.</h1>
 

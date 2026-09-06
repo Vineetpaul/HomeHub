@@ -1,18 +1,36 @@
 import React from 'react'
+import { useEffect } from 'react'
 import Building from '../../assets/Building2.jpg'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Discover = () => {
+
+    useEffect(() => {
+        AOS.init({
+            duration: 500,
+            offset: 100,
+            once: false,
+            mirror: true,
+            easing: 'ease-in-out',
+            anchorPlacement: 'top-bottom',
+        })
+        AOS.refresh();
+
+    }, [])
+
+
     return (
         <div className="flex flex-col justify-center shadow-lg gap-2 lg:gap-10 p-4 lg:p-16 bg-gray-300 min-h-screen sm:flex-row ">
             {/* right image container */}
             <div className="flex w-full min-h-[300px] sm:w-[500px] mt-10 lg:mt-0 items-center justify-center">
-                <img src={Building} alt="Building image"
-                    className="rounded-2xl shadow-white-xl " />
+                <img data-aos="fade-up" data-aos-duration="1000" src={Building} alt="Building image"
+                    className=" rounded-2xl shadow-white-xl " />
 
             </div>
 
             {/* left info container */}
-            <div className="w-full min-h-[300px] sm:w-[500px] mt-10 lg:mt-0 flex flex-col gap-4 p-4">
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-anchor-placement="center-bottom" className="w-full min-h-[300px] sm:w-[500px] mt-10 lg:mt-0 flex flex-col gap-4 p-4">
                 <p className="text-red-500">// DISCOVER OUR STORY</p>
                 <h1 className='text-gray-800 text-4xl font-bold '>UNVEILING PALACE REAL ESTATE JOURNEY</h1>
                 <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -39,7 +57,7 @@ const Discover = () => {
                 </div>
 
                 <div className="flex gap-4">
-                    <button className="bg-gradient-to-r from-red-400 to-red-300 text-gray-800 rounded-full h-10 w-30 font-semibold cursor-pointer hover:scale-105 transition-all duration-300 mt-4">Read More</button>
+                    <button className="bg-gradient-to-r from-red-500 to-red-400 text-white rounded-full h-10 w-30 font-semibold cursor-pointer hover:scale-105 transition-all duration-300 mt-4">Read More</button>
                 </div>
 
             </div>

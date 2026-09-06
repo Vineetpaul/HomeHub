@@ -4,24 +4,32 @@ import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import Discover from './components/Discover/Discover'
 import Products from './components/Products/Products'
+import Testimonials from './components/Testimonials/Testimonials'
+import Subscribe from './components/Subscribe/Subscribe'
+import Footer from './components/Footer/Footer'
+import Login from './Pages/Login/Login'
 
 const App = () => {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-
-          <Route path='/' element={<><Navbar /> <Hero/></>} />
-          
-         
-
-        </Routes>
-
-
-      </BrowserRouter>
-      <Discover />
-      <Products />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <Hero />
+              <Discover />
+              <Products />
+              <Testimonials />
+              <Subscribe />
+              <Footer />
+            </>
+          }
+        />
+        <Route path='/login' element={<Login/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

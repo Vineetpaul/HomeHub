@@ -1,25 +1,47 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { useEffect } from 'react'
+import navItems from '../../Config/Navitems'
+import AOS from 'aos'
+import 'aos/dist/aos.css';
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logoipsum-427.png'
 
 const Navbar = () => {
 
-    const navItems = [
-        { id: 1, name: 'Home', path: '/' },
-        { id: 2, name: 'About', path: '/about' },
-        { id: 3, name: 'Services', path: '/services' },
-        { id: 4, name: 'FAQs', path: '/faqs' },
-        { id: 5, name: 'Contact', path: '/contact' },
-    ];
+    const navigate = useNavigate();
+
+    const handleClick = ()=>{
+        navigate('/login');
+    }
+
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out',
+            delay: 200,
+        })
+
+    }, [])
+
+
 
 
 
     return (
-        <div className="shadow-lg position-sticky top-0 z-50 dark:bg-gray-800 ">
-            <div className="max-w-7xl shadow-lg mx-auto px-4 py-2 flex items-center justify-between h-16">
+        <div className="sticky top-0 z-50 shadow-lg dark:bg-gray-800">
+            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 py-2 shadow-lg">
 
                 {/* logo section */}
-                <div className="flex items-center space-x-2">
+                <div
+
+                    data-aos="fade-right"
+                    data-aos-anchor="#example-anchor"
+                    data-aos-offset="500"
+                    data-aos-duration="500"
+
+                    className="flex items-center space-x-2">
                     <img src={Logo} alt="Company Logo"
                         className="w-8 h-8 " />
                     <h1 className='text-xl font-bold text-black dark:text-white'>HomeHub</h1>
@@ -27,10 +49,10 @@ const Navbar = () => {
                 </div>
 
                 {/* Routes section */}
-                <div className="flex items-center justify-center relative bg-gray-200 dark:bg-gray-600 hidden sm:flex rounded-full w-[500px] h-[40px]">
-                    <ul className="flex h-full gap-6 justify-center items-center">
+                <div className="hidden h-10 w-[500px] items-center justify-center rounded-full bg-gray-200 sm:flex dark:bg-gray-600">
+                    <ul className="flex h-full items-center justify-center gap-6">
                         {navItems.map((items) => (
-                            <li key={items.id} className="text-black dark:text-white hover:text-blue-300 transition-color duration-200 cursor-pointer"><Link to={items.path}>{items.name}</Link></li>
+                            <li data-aos="fade-down" key={items.id} className="cursor-pointer text-black transition-colors duration-200 hover:text-blue-300 dark:text-white"><Link to={items.path}>{items.name}</Link></li>
                         ))}
                     </ul>
 
@@ -40,9 +62,14 @@ const Navbar = () => {
                 </div>
 
                 {/* search section */}
-                <div className="flex gap-4">
-                    <button className="bg-gradient-to-r from-gray-200 to-white text-gray-800 rounded-full px-3 font-semibold cursor-pointer hover:scale-105 transition-all duration-300">Login</button>
-                    <button className="bg-gradient-to-r from-gray-200 to-white text-gray-800 rounded-full px-3 py-2 font-semibold cursor-pointer hover:scale-105 transition-all duration-300">Get Started</button>
+                <div
+                    data-aos="fade-left"
+                    data-aos-anchor="#example-anchor"
+                    data-aos-offset="500"
+                    data-aos-duration="500"
+                    className="flex gap-4">
+                   <button type='button' onClick={handleClick} className="flex items-center justify-center w-20 bg-gradient-to-r from-red-500 to-red-400 text-white rounded-full font-semibold cursor-pointer hover:scale-105 transition-all duration-300">Login</button>
+                    <button className="bg-gradient-to-r from-red-500 to-red-400 text-white rounded-full px-3 py-2 font-semibold cursor-pointer hover:scale-105 transition-all duration-300">Get Started</button>
 
                 </div>
             </div>
