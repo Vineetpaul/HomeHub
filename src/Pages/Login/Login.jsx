@@ -166,7 +166,7 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Enter your password."
-                className="w-full border-0 px-4 pr-12 rounded-full bg-gray-200 h-[40px]"
+                className="w-full border-0 shadow-gray-700 shadow-lg px-4 pr-12 rounded-full bg-gray-200 h-[40px]"
               />
 
               <button
