@@ -5,9 +5,14 @@ import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Logo from '../../assets/logoipsum-427.png'
+import { useNavigate } from 'react-router-dom'
 import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from 'react-icons/fa6'
 
 const Login = () => {
+const navigate = useNavigate();
+   const handleSignup = () =>{
+        navigate('/signup')
+    }
 
   useEffect(() => {
     AOS.init({
@@ -208,7 +213,7 @@ const Login = () => {
 
           </div>
           <div className=" w-full h-[40px] flex items-center justify-center ">
-            <p className='text-white text-sm '>Don't have an account? <span className='cursor-pointer text-blue-500 hover:text-blue-400 transition-colors duration-200'>Sign Up</span></p>
+            <p className='text-white text-sm '>Don't have an account? <span onClick={handleSignup} className='cursor-pointer text-blue-500 hover:text-blue-400 transition-colors duration-200'>Sign Up</span></p>
 
           </div>
 

@@ -8,6 +8,7 @@ import Testimonials from './components/Testimonials/Testimonials'
 import Subscribe from './components/Subscribe/Subscribe'
 import Footer from './components/Footer/Footer'
 import Login from './Pages/Login/Login'
+import Signup from './Pages/Signup/Signup'
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           }
         />
         <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
       </Routes>
     </BrowserRouter>
   )
