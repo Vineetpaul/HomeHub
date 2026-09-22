@@ -1,6 +1,9 @@
 import Logo from '../../assets/logoipsum-427.png'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const Signup = () => {
 
@@ -12,6 +15,14 @@ const Signup = () => {
     confirmPassword: '',
   })
   const [errors, setErrors] = useState({})
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: 'ease-in-out',
+    })
+  }, [])
 
   const handleLogin = () =>{
     navigate('/login')
@@ -54,9 +65,9 @@ const Signup = () => {
 
   return (
     <div className='w-full min-h-screen bg-gradient-to-br from-slate-950 via-slate-800 to-blue-950 flex items-center justify-center p-5 sm:p-8 overflow-y-auto'>
-      <div className='w-full max-w-[430px] bg-white/10 backdrop-blur-md border border-white/15 shadow-2xl shadow-black/30 flex flex-col rounded-2xl p-6 sm:p-8 gap-6'>
+      <div data-aos='fade-up' className='w-full max-w-[430px] bg-white/10 backdrop-blur-md border border-white/15 shadow-2xl shadow-black/30 flex flex-col rounded-2xl p-6 sm:p-8 gap-6'>
         {/* heading section */}
-        <div className='flex flex-col w-full gap-3'>
+        <div data-aos='fade-down' data-aos-delay='150' className='flex flex-col w-full gap-3'>
           <div className='flex items-center justify-center gap-3 w-full'>
             <img src={Logo} alt='HomeHub logo' className='w-10 h-10 rounded-xl shadow-lg' />
             <h1 className='text-2xl font-bold tracking-wide text-white'>HomeHub</h1>
@@ -71,7 +82,7 @@ const Signup = () => {
 
 
         {/* form section */}
-        <form onSubmit={handleSubmit} className='w-full flex flex-col gap-4'>
+        <form data-aos='fade-up' data-aos-delay='300' onSubmit={handleSubmit} className='w-full flex flex-col gap-4'>
           <div className='flex flex-col gap-2'>
             <label htmlFor='name' className='text-xs font-semibold uppercase tracking-wider text-slate-200'>Name</label>
             <input id='name' name='name' value={formData.name} onChange={handleChange} placeholder='Enter your name' className='px-4 rounded-lg bg-white/95 text-slate-900 placeholder:text-slate-400 outline-none w-full h-11 transition-shadow focus:ring-2 focus:ring-blue-300' />
@@ -103,7 +114,7 @@ const Signup = () => {
 
 
         {/* icons section */}
-        <div className='w-full border-t border-white/15 pt-5'>
+        <div data-aos='fade-up' data-aos-delay='450' className='w-full border-t border-white/15 pt-5'>
           <div className='flex items-center justify-center'>
             <p className='text-sm text-slate-300'>Already have an account? <button type='button' onClick={handleLogin} className='text-blue-300 hover:text-blue-200 font-semibold transition-colors duration-200 cursor-pointer'>Log in</button></p>
           </div>
