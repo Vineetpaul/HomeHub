@@ -1,5 +1,3 @@
-import React from 'react'
-import { Link } from 'react-router'
 import AOS from 'aos'
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
@@ -40,18 +38,8 @@ const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const errors = validateForm();
-
-    if (Object.keys(errors).length > 0) {
-      setFormState((prev) => ({
-        ...prev,
-        error: errors
-      }))
-      return;
-    }
-    alert("Form is submitted")
-    console.log("Form is Valid")
+    localStorage.setItem('isAuthenticated', 'true')
+    navigate('/')
 
   };
 
@@ -74,22 +62,6 @@ const navigate = useNavigate();
         return { ...prev, error: errors };
       });
     }
-  };
-
-  const validateForm = () => {
-    const errors = {};
-
-    if (!formData.email.trim()) {
-      errors.email = "Please enter your email";
-    }
-
-    if (!formData.password) {
-      errors.password = "Please enter your password";
-    } else if (formData.password.length < 6) {
-      errors.password = "Password must be at least 6 characters long";
-    }
-
-    return errors;
   };
 
   const togglePassword = ()=>{
