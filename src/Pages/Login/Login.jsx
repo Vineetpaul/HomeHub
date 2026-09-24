@@ -38,9 +38,38 @@ const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem('isAuthenticated', 'true')
-    navigate('/')
 
+    const nextErrors = {};
+
+    if (!formData.email.trim()) {
+      nextErrors.email = 'Please enter your email.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      nextErrors.email = 'Please enter a valid email address.';
+    }
+
+    if (!formData.password) {
+      nextErrors.password = 'Please enter your password.';
+    } else if (formData.password.length < 6) {
+      nextErrors.password = 'Password must be at least 6 characters long.';
+    }
+
+    if (Object.keys(nextErrors).length > 0) {
+      setFormState((prev) => ({
+        ...prev,
+        error: nextErrors,
+        success: false,
+      }));
+      return;
+    }
+
+    localStorage.setItem('isAuthenticated', 'true');
+    setFormState((prev) => ({
+      ...prev,
+      error: {},
+      success: true,
+      loading: false,
+    }));
+    navigate('/');
   };
 
 
@@ -155,7 +184,9 @@ const navigate = useNavigate();
               </button>
 
             </div>
-
+            {formState.error.password && (
+              <p className="text-red-500 text-[12px]">{formState.error.password}</p>
+            )}
 
           </div>
 
